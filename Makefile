@@ -130,7 +130,7 @@ all:    ${BIN}
 ${BIN}: ${OBJS} ${LIB}
 	${LD} -o ${BIN} ${OBJS} ${LDFLAGS} -L. -lctok
 
-${LIB}: ${LIBOJJS}
+${LIB}: ${LIBOBJS}
 	${AR} r ${LIB} ${LIBOBJS}
 
 lex.yy.c:   c.lex
@@ -164,7 +164,7 @@ depend:
 # Remove generated files (objs and nroff output from man pages)
 
 clean:
-	rm -f ${OBJS} ${LIBOBJS} ${BIN} *.nr *.a
+	rm -f ${OBJS} ${LIBOBJS} ${BIN} *.nr *.a lex.yy.c
 
 # Keep backup files during normal clean, but provide an option to remove them
 realclean: clean

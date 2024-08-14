@@ -1,3 +1,5 @@
+// Comment
+
 /***************************************************************************
  *  Description:
  *  
@@ -40,10 +42,14 @@ int     main(int argc,char *argv[])
 int     ctok(FILE *infile)
 
 {
+    // See c.lex for names and ordinal values
+    static char *token_names[] =
+	{ "comment", "type", "increment", "define", "include", "ident", "intconst" };
     int     token;
+    extern char *yytext;
     
     while ( (token = yylex()) > 0 )
-	printf("Token = %d\n", token);
+	printf("%s:%s\n", token_names[token], yytext);
     
     return 0;
 }

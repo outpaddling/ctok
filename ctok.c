@@ -43,8 +43,16 @@ int     ctok(FILE *infile)
 
 {
     // See c.lex for names and ordinal values
+    // These must be in the same order as the enum!!
     static char *token_names[] =
-	{ "comment", "type", "increment", "define", "include", "ident", "intconst" };
+	{
+	    "comment", "type", "define", "include", "ident",
+	    "intconst", "strconst",
+	    "open-brace", "close-brace",
+	    "open-paren", "close-paren", "open-bracket", "close-bracket",
+	    "asterisk", "semicolon", "colon", "comma", "increment",
+	    "decrement", "equals", "assignment", "plus", "minus"
+	};
     int     token;
     extern char *yytext;
     

@@ -4,17 +4,18 @@
 // #include "y.tab.h"
 
 // COMMENT is not used, as yylex() does not return it
-enum { COMMENT=0, TYPE, DEFINE, INCLUDE, IDENT, INTCONST, STRCONST,
+enum { COMMENT=0, TYPE, DEFINE, IFDEF, IFNDEF, ENDIF, INCLUDE,
+	IDENT, INTCONST, STRCONST,
 	OPEN_BRACE, CLOSE_BRACE, OPEN_PAREN, CLOSE_PAREN,
 	OPEN_BRACKET, CLOSE_BRACKET, ASTERISK, SEMICOLON, COLON, COMMA,
-	INCREMENT, DECREMENT, EQUALS, ASSIGNMENT, PLUS, MINUS};
+	INCREMENT, DECREMENT, EQUALS, ASSIGNMENT, PLUS, MINUS,
+	ENUM};
 
 %}
 
-alpha   [A-Za-z]
-ident   [A-Za-z_0-9]
-digit   [0-9]
-unary   "++"|"--"
+ident_start [A-Za-z_]
+ident       [A-Za-z_0-9]
+digit       [0-9]
 %x COMMENT
 
 %%
@@ -52,10 +53,15 @@ unary   "++"|"--"
 
 #define.*$              { return DEFINE; }
 #include.*$             { return INCLUDE; }
+#ifdef.*$               { return IFDEF; }
+#ifndef.*$              { return IFNDEF; }
+#endif.*$               { return ENDIF; }
 
 "char"|"short"|"int"|"long"|"long"[ \t\n]+"long"|"void"|"float"|"double"|"long"[ \t\n]+"double" { return TYPE; }
 
-{alpha}{ident}*         { return IDENT; }
+"enum"                  { return ENUM; }
+
+{ident_start}{ident}*   { return IDENT; }
 {digit}+                { return INTCONST; }
 
 %%

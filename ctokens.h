@@ -7,6 +7,6 @@ enum
     INCLUDE
 };
 
-#include "ctok-protos.h"
+#include "ctokens-protos.h"
 
 #endif  // #ifndef __H_

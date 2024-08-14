@@ -1,5 +1,5 @@
-ctok.o: ctok.c ctok.h ctok-protos.h
-	${CC} -c ${CFLAGS} ctok.c
+ctokens.o: ctokens.c ctokens.h ctokens-protos.h
+	${CC} -c ${CFLAGS} ctokens.c
 
 lex.yy.o: lex.yy.c
 	${CC} -c ${CFLAGS} lex.yy.c

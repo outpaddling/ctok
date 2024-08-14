@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <sysexits.h>
 #include <stdlib.h>
-#include "ctok.h"
+#include "ctokens.h"
 
 void    usage(char *argv[]);
 
@@ -46,12 +46,15 @@ int     ctok(FILE *infile)
     // These must be in the same order as the enum!!
     static char *token_names[] =
 	{
-	    "comment", "type", "define", "include", "ident",
+	    "comment", "type", "define", "ifdef", "ifndef", "endif",
+	    "include",
+	    "ident",
 	    "intconst", "strconst",
 	    "open-brace", "close-brace",
 	    "open-paren", "close-paren", "open-bracket", "close-bracket",
 	    "asterisk", "semicolon", "colon", "comma", "increment",
-	    "decrement", "equals", "assignment", "plus", "minus"
+	    "decrement", "equals", "assignment", "plus", "minus",
+	    "enum"
 	};
     int     token;
     extern char *yytext;

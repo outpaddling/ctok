@@ -48,13 +48,13 @@
 ############################################################################
 # Installed targets
 
-BIN     = ctok
-LIB     = libctok.a
+BIN     = ctokens
+LIB     = libctokens.a
 
 ############################################################################
 # List object files that comprise BIN.
 
-OBJS    = ctok.o
+OBJS    = ctokens.o
 LIBOBJS = lex.yy.o
 
 ############################################################################
@@ -128,7 +128,7 @@ STRIP   ?= strip
 all:    ${BIN}
 
 ${BIN}: ${OBJS} ${LIB}
-	${LD} -o ${BIN} ${OBJS} ${LDFLAGS} -L. -lctok
+	${LD} -o ${BIN} ${OBJS} ${LDFLAGS} -L. -lctokens
 
 ${LIB}: ${LIBOBJS}
 	${AR} r ${LIB} ${LIBOBJS}

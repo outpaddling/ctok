@@ -1,0 +1,6 @@
+ctok.o: ctok.c ctok.h ctok-protos.h
+	${CC} -c ${CFLAGS} ctok.c
+
+lex.yy.o: lex.yy.c
+	${CC} -c ${CFLAGS} lex.yy.c
+

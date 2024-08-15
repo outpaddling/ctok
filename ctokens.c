@@ -17,8 +17,6 @@
 #include <stdlib.h>
 #include "ctokens.h"
 
-void    usage(char *argv[]);
-
 int     main(int argc,char *argv[])
 
 {
@@ -30,34 +28,45 @@ int     main(int argc,char *argv[])
 	    infile = stdin;
 	    break;
 	
+	case 2:
+	    if ( (infile = fopen(argv[1], "r")) == NULL )
+	    {
+		fprintf(stderr, "%s: Cannot open %s.\n", argv[0], argv[1]);
+		return EX_NOINPUT;
+	    }
+	    break;
+	    
 	default:
 	    usage(argv);
 	    return EX_USAGE;
     }
     
-    return ctok(infile);
+    return ctokens(infile);
 }
 
 
-int     ctok(FILE *infile)
+int     ctokens(FILE *infile)
 
 {
     // See c.lex for names and ordinal values
-    // These must be in the same order as the enum!!
+    // These must be in the same order as the enum in c.lex!!
     static char *token_names[] =
 	{
-	    "comment", "type", "define", "ifdef", "ifndef", "endif",
-	    "include",
-	    "ident",
+	    "comment",
+	    "define", "ifdef", "ifndef", "endif", "include",
+	    "type", "ident",
 	    "intconst", "strconst",
-	    "open-brace", "close-brace",
-	    "open-paren", "close-paren", "open-bracket", "close-bracket",
-	    "asterisk", "semicolon", "colon", "comma", "increment",
-	    "decrement", "equals", "assignment", "plus", "minus",
+	    "open-brace", "close-brace", "open-paren", "close-paren",
+	    "open-bracket", "close-bracket",
+	    "asterisk", "semicolon", "colon", "comma",
+	    "increment", "decrement", "equals", "assignment", "plus", "minus",
 	    "enum"
 	};
     int     token;
     extern char *yytext;
+    extern FILE *yyin;
+    
+    yyin = infile;
     
     while ( (token = yylex()) > 0 )
 	printf("%s:%s\n", token_names[token], yytext);
@@ -69,6 +78,6 @@ int     ctok(FILE *infile)
 void    usage(char *argv[])
 
 {
-    fprintf(stderr, "Usage: %s\n", argv[0]);
+    fprintf(stderr, "Usage: %s [file]\n", argv[0]);
     exit(EX_USAGE);
 }

@@ -1,11 +1,9 @@
 #ifndef _CTOK_H_
 #define _CTOK_H_
 
-enum
-{
-    DEFINE = 1,
-    INCLUDE
-};
+#include <stdio.h>
+
+extern int  yylex(void);
 
 #include "ctokens-protos.h"
 

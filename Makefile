@@ -71,7 +71,7 @@ PREFIX      ?= ../local
 LOCALBASE   ?= ${PREFIX}
 
 # Allow caller to override either MANPREFIX or MANDIR
-MANPREFIX   ?= ${PREFIX}
+MANPREFIX   ?= ${PREFIX}/share
 MANDIR      ?= ${MANPREFIX}/man
 
 ############################################################################

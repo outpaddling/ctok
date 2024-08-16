@@ -1,0 +1,49 @@
+.TH CTOKENS
+.SH NAME    \" Section header
+.PP
+
+ctokens - tokenize C source code
+
+\" Convention:
+\" Underline anything that is typed verbatim - commands, etc.
+.SH SYNOPSIS
+.PP
+.nf 
+.na 
+ctokens [filename]
+.ad
+.fi
+
+.SH "DESCRIPTION"
+The
+.B ctokens
+command tokenizes C source code, producing a series of lines in the
+following form:
+
+.nf
+.na
+token-name:token-text
+
+E.g.
+
+ifndef:#ifndef _CTOK_H_
+define:#define _CTOK_H_
+enum:enum
+open-brace:{
+ident:DEFINE
+assignment:=
+intconst:1
+.ad
+.fi
+
+.SH "SEE ALSO"
+lex(1)
+
+.SH BUGS
+Please report bugs to the author and send patches in unified diff format.
+(man diff for more information)
+
+.SH AUTHOR
+.nf
+.na
+Jason Bacon         
